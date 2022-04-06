@@ -18,10 +18,17 @@
     <div class="col-lg-4">
     <h1>Registro</h1>
     <form action="conection.php" method="POST" autocomplete="on">
-      <input type="text" name="usuario" placeholder="Usuario" required/> <br>
+      <p>Nombre</p>
       <input type="text" name="nombre" placeholder="Nombre" required/><br>
-      <input type="text" name="apellido" placeholder="Apellido" /><br>
+      <p>Apellido paterno</p>
+      <input type="text" name="apellidoPaterno" placeholder="Apellido paterno" /><br>
+      <p>Apellido materno</p>
+      <input type="text" name="apellidoMaterno" placeholder="Apellido materno" /><br>
+      <p>Fecha de nacimiento</p>
+      <input type="date" name="fechaNacimiento" /><br>
+      <p>Correo electrónico</p>
       <input type="email" name="correo" placeholder="Correo" required/><br>
+      <p>Contraseña</p>
       <input type="password" name="contrasena" placeholder="Contraseña" required/><br>
       <input type="submit" name="submit" value="Siguiente"/><br>
     </form>

@@ -1,43 +1,45 @@
 <html>
   <head>
     <title>
-      Prueba de conexion
+      Registro
     </title>
   </head>
   <body>
-    <?php
-	//TODO obtener datos de un archivo externo
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "myDB";
-	
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	
-	// Check connection
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
+    <?php include '../env.php';
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
 
-	//TODO cambar esta query de prueba por una que tenga
-	//que ver con la historia
-	$sql = "INSERT INTO MyGuests (firstname, lastname, email)
-	VALUES ('John', 'Doe', 'john@example.com');";
-	$sql .= "INSERT INTO MyGuests (firstname, lastname, email)
-	VALUES ('Mary', 'Moe', 'mary@example.com');";
-	$sql .= "INSERT INTO MyGuests (firstname, lastname, email)
-	VALUES ('Julie', 'Dooley', 'julie@example.com')";
-
-	// sql to create
-	if ($conn->multi_query($sql) === TRUE) {
-		$last_id = $conn->insert_id;
-	  echo "New record created successfully";
-	} else {
-	  echo "Error: " . $sql . "<br>" . $conn->error;
-	}
-	
-	$conn->close();
+  	$servername = "localhost";
+  	$dbname = "SASEB";
+  	
+  	// Create connection
+  	$conn = new mysqli($servername, $username, $password, $dbname);
+  	
+  	// Check connection
+    
+  	if ($conn->connect_error) {
+  	  die("Connection failed: " . $conn->connect_error);
+  	}
+  
+    $nombre = $_POST["nombre"];
+    $apellidoPat = $_POST["apellidoPaterno"];
+    $apellidoMat = $_POST["apellidoMaterno"];
+    $fechaNacimiento = $_POST["fechaNacimiento"];
+    $correo = $_POST["correo"];
+    $contrasena = $_POST["contrasena"];
+  
+$sql="INSERT INTO `Registro` (`nombre`, `apellidoPaterno`, 
+`apellidoMaterno`, `fechaNacimiento`, `correo`, `contrasena`) 
+VALUES ('$nombre', '$apellidoPat', '$apellidoMat','$fechaNacimiento', 
+'$correo', '$contrasena');";
+    
+  	if ($conn->query($sql) === TRUE) {
+  	  echo "Usuario creado con éxito";
+  	} else {
+  	  echo "Error: " . $sql . "<br>" . $conn->error;
+  	}
+  	
+  	$conn->close();
     ?> 
   </body>
 </html>
