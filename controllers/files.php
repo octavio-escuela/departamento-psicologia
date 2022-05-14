@@ -1,6 +1,6 @@
 <?php
 
-class Expenses extends SessionController{
+class Files extends SessionController{
 
     function __construct(){
         parent::__construct();
@@ -8,8 +8,8 @@ class Expenses extends SessionController{
     }
 
     function render(){
-        error_log('Expenses:: render -> carga la vista de expenses');
+        error_log('Files:: render -> carga la vista de files');
         $this->view->errorMessage = '';
-        $this->view->render('expenses/index');
+        $this->view->render('files/index');
     }
 }

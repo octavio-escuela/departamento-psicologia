@@ -32,7 +32,7 @@
             </div>
           </form>
           <span class="text-footer">¿Aún no te has registrado?
-            <a href="<?php echo constant('URL');?>signup">Registrate</a>
+            <a href="<?php echo constant('URL');?>/signup">Registrate</a>
           </span>
         </div>
       </div>

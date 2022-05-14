@@ -2,6 +2,7 @@
 
 class ExpensesModel extends Model{
 
+    
 }
 
 ?>

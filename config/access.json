@@ -16,17 +16,37 @@
             "role": "tutor"
         },
         {
-            "site": "expenses",
+            "site": "files",
             "access": "private",
             "role": "tutor"
         },
         {
-            "site": "user",
+            "site": "reports",
             "access": "private",
             "role": "tutor"
         },
         {
             "site": "admin",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "psychologists",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "students",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "files",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "reports",
             "access": "private",
             "role": "admin"
         }
