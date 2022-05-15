@@ -1,0 +1,100 @@
+* {
+    /* el margen para los cuatro lados es 0 */
+    margin         : 0;
+    /* establece el espacio de relleno requerido por todos los lados de un elemento en 0. */
+    padding        : 0;
+    box-sizing     : border-box;
+    text-decoration: none;
+    /* mejor fuente*/
+    font-family    : sans-serif;
+}
+
+.fondo {
+    background-color: #46E7F1;
+    display         : flex;
+    place-items     : center;
+    height          : 100vh;
+    justify-content : center;
+    align-items     : center;
+}
+
+/***** formulario *****/
+.contenedor {
+    width        : 300px;
+    min-height   : 400px;
+    background   : rgba(255, 255, 255);
+    border-radius: 25px;
+    box-shadow   : 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.formulario {
+    padding: 40px;
+}
+
+.formulario h2 {
+    color        : rgb(24, 24, 24);
+    font-size    : 24px;
+    margin-bottom: 40px;
+}
+
+.formulario .caja_entrada {
+    margin-top: 20px;
+}
+
+.formulario .caja_entrada input {
+    width         : 100%;
+    background    : #EFEFEF;
+    border        : none;
+    outline       : none;
+    padding       : 10px 20px;
+    border-radius : 35px;
+    font-size     : 16px;
+    letter-spacing: 1px;
+}
+
+.formulario .caja_entrada input::placeholder {
+    color: rgb(62, 62, 62);
+}
+
+h2 {
+    text-align: center;
+}
+
+.text-footer {
+    display   : block;
+    margin-top: 40px;
+    text-align: center;
+    color     : #414141;
+}
+
+.text-footer a {
+    color: #029EE1;
+}
+
+/***** End formulario *****/
+
+/***** boton *****/
+.boton-style {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+.boton-style input {
+    width           : 125px;
+    margin-top      : 20px;
+    background-color: #59CCF0;
+    color           : rgb(24, 24, 24);
+    border          : none;
+    outline         : none;
+    padding         : 10px 20px;
+    text-align      : center;
+    cursor          : pointer;
+    font-size       : 16px;
+}
+
+.boton-style input:hover {
+    background-color: #57c0e0;
+}
+
+/***** End boton *****/

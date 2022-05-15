@@ -1,0 +1,42 @@
+#form-expense-container{
+    padding: 10px 30px;
+    width: 100%;
+}
+
+#form-expense-container .section{
+    padding: 10px 0;
+}
+
+
+h2{
+    font-size: 28px;
+    padding: 20px 0;
+}
+
+
+
+/* se queda */
+#background-container{
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+/*se queda*/
+#title-bar-container{
+    width: 100%;
+    text-align: right;
+}
+/* se queda */
+#panel-container{
+    background-color: white;
+    width: 400px;
+    margin: 50px auto;
+    border-radius: 3px;
+}
+
+
+
+

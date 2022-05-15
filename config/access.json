@@ -1,0 +1,60 @@
+{
+    "sites":[
+        {
+            "site": "",
+            "access": "public",
+            "role": ""
+        },
+        {
+            "site": "signup",
+            "access": "public",
+            "role": ""
+        },
+        {
+            "site": "dashboard",
+            "access": "private",
+            "role": "tutor"
+        },
+        {
+            "site": "files",
+            "access": "private",
+            "role": "tutor"
+        },
+        {
+            "site": "reports",
+            "access": "private",
+            "role": "tutor"
+        },
+        {
+            "site": "admin",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "psychologists",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "students",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "files",
+            "access": "private",
+            "role": "admin"
+        },
+        {
+            "site": "reports",
+            "access": "private",
+            "role": "admin"
+        }
+    ],
+    "default-sites":[
+        {
+            "tutor": "dashboard",
+            "admin": "admin"
+        }
+    ]
+}
