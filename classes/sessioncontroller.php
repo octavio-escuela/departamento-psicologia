@@ -107,7 +107,7 @@ class SessionController extends Controller{
         for ($i=0; $i < sizeof($this->sites); $i++) { 
             if ($this->sites[$i]['role'] === $role) {
                 //cambiar por que nuestra aplicacion no es de gastos
-                $url = '/departamento-psicologia/' . $this->sites[$i]['site'];
+                $url = constant('URL') . '/'  .  $this->sites[$i]['site'];
                 error_log($url);
                 break;
             }
