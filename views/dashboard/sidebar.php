@@ -38,7 +38,7 @@
                     <i class="fa-solid fa-user-tie"></i>
                     <span class="link-name">Psicologos</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="<?php echo constant('URL').'/records' ?>">
                     <i class="fa-solid fa-folder-open"></i>
                     <span class="link-name">Expedientes</span>
                 </a></li>
