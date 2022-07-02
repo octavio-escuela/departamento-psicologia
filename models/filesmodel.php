@@ -46,13 +46,13 @@ class FilesModel extends Model implements IModel{
             $query = $this->query('SELECT * FROM tbl_expediente');
             while ($p = $query->fetch(PDO::FETCH_ASSOC)) {
                 $item = new FilesModel();
-                $itme->setId($p['idExpediente']);
-                $itme->setTiempoResidencia($p['tiempoResidencia']);
-                $itme->setReligion($p['religion']);
-                $itme->setOcupacion($p['ocupacion']);
-                $itme->setMotivo($p['motivo']);
-                $itme->setDescripcion($p['descripcion']);
-                $itme->setIdAlumno($p['idAlumno']);
+                $item->setId($p['idExpediente']);
+                $item->setTiempoResidencia($p['tiempoResidencia']);
+                $item->setReligion($p['religion']);
+                $item->setOcupacion($p['ocupacion']);
+                $item->setMotivo($p['motivo']);
+                $item->setDescripcion($p['descripcion']);
+                $item->setIdAlumno($p['idAlumno']);
                 array_push($items,$item);
             }
             return $items;
@@ -78,7 +78,7 @@ class FilesModel extends Model implements IModel{
             $this->idAlumno = $file['idAlumno'];
 
             return $this;
-        }catch(PDOExceptions $e){
+        }catch(PDOException $e){
             error_log($e);
             return false;
         }
@@ -115,8 +115,8 @@ class FilesModel extends Model implements IModel{
         $this->religion         = $array['religion'];
         $this->ocupacion        = $array['ocupacion'];
         $this->motivo           = $array['motivacion'];
-        $this->descripcion      = $arra['descripcion'];
-        $this->idAlumno         = $arra['idAlumno']; 
+        $this->descripcion      = $array['descripcion'];
+        $this->idAlumno         = $array['idAlumno']; 
     }
 
     #Getters y Setters
