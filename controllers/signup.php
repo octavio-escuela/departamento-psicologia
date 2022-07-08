@@ -8,7 +8,7 @@ class Signup extends SessionController{
 
     function render(){
         $this->view->errorMessage = '';
-        $this->view->render('login/signup',[]);
+        $this->view->render('psychologists/index',[]);
     }
     function newUser(){
         if($this->existPOST(['username','nombre','apellido_p','apellido_m','correo', 'password', 'telefono'])){
@@ -24,7 +24,7 @@ class Signup extends SessionController{
             error_log($username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono));
 
             if($username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono)){
-                $this->redirect('signup',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EMPTY]);
+                $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EMPTY]);
             }
             else{
                 $user =new UserModel();
@@ -39,15 +39,15 @@ class Signup extends SessionController{
                 $user ->setRole('tutor');
     
                 if($user->exists($username)){
-                    $this->redirect('signup',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EXISTS]);
+                    $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EXISTS]);
                 }else if($user->save()){
                     $this->redirect('',['success' => SuccessMessages::SUCCESS_SIGNUP_NEWUSER]);
                 }else{
-                    $this-> redirect('signup',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
+                    $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
                 }
             }
         }else{
-            $this-> redirect('signup',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
+            $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
         }
     }
 }

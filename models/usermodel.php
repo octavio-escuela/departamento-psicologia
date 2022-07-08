@@ -159,6 +159,36 @@ class UserModel extends Model implements IModel{
             echo $e;
         }
     }
+    //? quisas pueda pasarle como parametro el id_rol para evitar sql injection
+    //TODO: pasar la funcion a su pripio modelo
+
+    
+    public function getPsychologists(){
+        $items = [];
+
+        try{
+            $query = $this->query('SELECT id, nombre, apellido_p, correo, telefono FROM tbl_usuario WHERE id_rol = 2');
+
+            while($p = $query->fetch(PDO::FETCH_ASSOC)){
+                $item = new UserModel();
+                $item->setId($p['id']);
+                $item->setName($p['nombre']);
+                $item->setLastName($p['apellido_p']);
+                $item->setEmail($p['correo']);
+                $item->setPhone($p['telefono']);
+
+                array_push($items, $item);
+            }
+
+            // foreach ($items as $item => $value){
+            //     error_log($item.": ".$value);
+            // }
+            return $items;
+            
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
 
     /**
      *  Gets an item
@@ -169,15 +199,15 @@ class UserModel extends Model implements IModel{
             $query->execute([ 'id' => $id]);
             $user = $query->fetch(PDO::FETCH_ASSOC);
 
-            $this->id           = $user['id'];
-            $this->usuario      = $user['usuario'];
-            $this->nombre       = $user['nombre'];
-            $this->apellido_p   = $user['apellido_p'];
-            $this->apellido_m   = $user['apellido_m'];
-            $this->correo       = $user['correo'];
-            $this->contraseña   = $user['contrasena'];
-            $this->telefono     = $user['telefono'];
-            $this->rol          = $user['rol'];
+            $this->id           = $user['id'] ?? 0;
+            $this->usuario      = $user['usuario'] ?? '';
+            $this->nombre       = $user['nombre'] ?? '';
+            $this->apellido_p   = $user['apellido_p'] ?? '';
+            $this->apellido_m   = $user['apellido_m'] ?? '';
+            $this->correo       = $user['correo'] ?? '';
+            $this->contraseña   = $user['contrasena'] ?? '';
+            $this->telefono     = $user['telefono'] ?? '';
+            $this->rol          = $user['rol'] ?? '';
             return $this;
         }catch(PDOException $e){
             return false;
