@@ -7,6 +7,7 @@ $data = new Psychologists();
 $pysochologisTable=$data->createPsychologistsTable();
 
 ?>
+<body>
 <div class='dash-content'>
     <h2 style='color:balck;' class='pt-5 pb-4'>vista de psicologos</h2>
     <div class='container'>
@@ -120,8 +121,8 @@ $pysochologisTable=$data->createPsychologistsTable();
 </section>
 <script src='public/js/script.js'></script>
 <script src="public/js/bootstrap.min.js"></script>
-<script src="public/js/jquery.js"></script>
-<script src="public/js/jquery.dataTables.min.js"></script>
+<script src="public/js/jquery.js"></script> 
+    <script src="public/js/jquery.dataTables.min.js"></script> 
 <script>
     // var tabla = document.querySelector('#tabla');
     // var dataTable = new DataTable(tabla, {
@@ -139,7 +140,11 @@ $pysochologisTable=$data->createPsychologistsTable();
     //     ]
     // });
     $(document).ready(function() {
-        $('#tabla').DataTable();
+        $('#tabla').DataTable({
+            language : {
+                url: "public/Datatable/es-ES.json"
+            }
+        });
     });
 </script>
 
