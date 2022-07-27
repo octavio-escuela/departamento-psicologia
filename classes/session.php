@@ -1,8 +1,8 @@
 <?php
 class Session{
 
-    //
-    private $sessionName = 'user';
+    //! antes estaba como user
+    private $sessionName = 'tutor';
 
     public function __construct(){
         //validar si la sesion ya existe

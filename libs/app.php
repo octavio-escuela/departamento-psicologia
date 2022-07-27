@@ -4,7 +4,7 @@ require_once 'controllers/errores.php';
 class App{
     function __construct(){
         //en la variable url se guarda la url si existe si no existe entonces se guarda null
-        $url = isset($_GET['url']) ? $_GET['url'] : null; 
+        $url = isset($_GET['url']) ? $_GET['url'] : null ?? ""; 
         //la idea es recortar la url para tener control sobre los parametros de la url
         //rtrim sirve para eliminar las diagonales al final de la cadena
         $url = rtrim($url,'/');

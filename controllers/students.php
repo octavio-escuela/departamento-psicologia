@@ -11,7 +11,9 @@ class Students extends SessionController{
     function render(){
         error_log('Student:: render -> carga la vista de students');
         $this->view->errorMessage = '';
-        $this->view->render('students/index');
+        $this->view->render('students/index',[
+            'user' => $this->user
+        ]);
     }
     // function newStudent(){
     //     if($this->existPOST(['nombre','fecha','genero','lugar','domicilio', 'telefono', 'celular'])){

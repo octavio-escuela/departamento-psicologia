@@ -26,11 +26,11 @@
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="">
                     <i class="fa-solid fa-house"></i>
                     <span class="link-name">Dahsboard</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="<?php echo constant('URL');?>/students">
                     <i class="fa-solid fa-user-graduate"></i>
                     <span class="link-name">Alumnos</span>
                 </a></li>
@@ -38,7 +38,7 @@
                     <i class="fa-solid fa-user-tie"></i>
                     <span class="link-name">Psicologos</span>
                 </a></li>
-                <li><a href="<?php echo constant('URL').'/records' ?>">
+                <li><a href="<?php echo constant('URL');?>/files">
                     <i class="fa-solid fa-folder-open"></i>
                     <span class="link-name">Expedientes</span>
                 </a></li>
