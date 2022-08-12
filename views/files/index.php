@@ -1,4 +1,5 @@
 <!-- generador de expediente de alumno -->
+<?php require_once ('views/template/sidebar.php'); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -7,6 +8,7 @@
             </div>
         </div>
     </div>
+<form action="<?php constant('URL') ?>/files/registerNewFile" method="POST">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -134,3 +136,6 @@
                             </div>
                         </div>
                     </div>
+    </form>
+                    
+
