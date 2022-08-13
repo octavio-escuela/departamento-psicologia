@@ -15,63 +15,122 @@ class Psychologists extends SessionController{
         ]);
     }
 
-    // function newUser(){
-    //     if($this->existPOST(['username','nombre','apellido_p','apellido_m','correo', 'password', 'telefono'])){
+    function newUser(){
+        if($this->existPOST(['username','nombre','apellido_p','apellido_m','correo', 'password', 'telefono'])){
 
-    //         $username = $this->getPost('username');
-    //         $nombre = $this->getPost('nombre');
-    //         $apellido_p = $this->getPost('apellido_p');
-    //         $apellido_m = $this->getPost('apellido_m');
-    //         $correo = $this->getPost('correo');
-    //         $password = $this->getPost('password');
-    //         $telefono = $this->getPost('telefono');
+            $username = $this->getPost('username');
+            $nombre = $this->getPost('nombre');
+            $apellido_p = $this->getPost('apellido_p');
+            $apellido_m = $this->getPost('apellido_m');
+            $correo = $this->getPost('correo');
+            $password = $this->getPost('password');
+            $telefono = $this->getPost('telefono');
             
-    //         error_log($username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono));
+            error_log($username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono));
 
-    //         if($username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono)){
-    //             $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EMPTY]);
-    //         }
-    //         else{
-    //             $user =new UserModel();
+            if($username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono)){
+                $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EMPTY]);
+            }
+            else{
+                $user =new UserModel();
     
-    //             $user -> setUsername($username);
-    //             $user ->setName($nombre);
-    //             $user ->setLastName($apellido_p);
-    //             $user ->setMothLastName($apellido_m);
-    //             $user ->setEmail($correo);
-    //             $user ->setPassword($password);
-    //             $user ->setPhone($telefono);
-    //             $user ->setRole('tutor');
+                $user -> setUsername($username);
+                $user ->setName($nombre);
+                $user ->setLastName($apellido_p);
+                $user ->setMothLastName($apellido_m);
+                $user ->setEmail($correo);
+                $user ->setPassword($password);
+                $user ->setPhone($telefono);
+                $user ->setRole('tutor');
     
-    //             if($user->exists($username)){
-    //                 $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EXISTS]);
-    //             }else if($user->save()){
-    //                 $this->redirect('',['success' => SuccessMessages::SUCCESS_SIGNUP_NEWUSER]);
-    //             }else{
-    //                 $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
-    //             }
-    //         }
-    //     }else{
-    //         $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
-    //     }
-    // }
-
+                if($user->exists($username)){
+                    $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EXISTS]);
+                }else if($user->save()){
+                    $this->redirect('psychologists',['success' => SuccessMessages::SUCCESS_SIGNUP_NEWUSER]);
+                }else{
+                    $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
+                }
+            }
+        }else{
+            $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
+        }
+    }
     // new expense UI
     function createPsychologistsTable(){
-        $user = new UserModel(); /*//? creo que deberia crear un modelo de psicologo
-            y no creo que sea necesario implementar imodel en el modelo
-        */
-        // error_log($user->getAllPsychologists());
-
-        // $data["titulo"] = "Psicologos";
-        // $data["psicologos"] = $user->getPsychologists();
-
+        $user = new UserModel(); 
         return $user->getPsychologists();
-
-        // error_log($data["psicologos"][0]->getName()." ".$data["psicologos"][1]->getLastName());
-
-
-
-        // echo json_encode($data);
     } 
+
+    function delete($params){
+        error_log("psychologists::delete()");
+        
+        if($params === NULL) $this->redirect('psychologists', ['error' => ErrorMessages::ERROR_ADMIN_NEWCATEGORY_EXISTS]);
+        $id = $params[0];
+        error_log("psychologists::delete() id = " . $id);
+        $user = new UserModel();
+        $res = $user->delete($id);
+
+        if($res){
+            $this->redirect('psychologists', ['success' => SuccessMessages::SUCCESS_PSYCHOLOGIST_DELETE]);
+        }else{
+            $this->redirect('psychologists', ['error' => ErrorMessages::ERROR_ADMIN_NEWCATEGORY_EXISTS]);
+        }
+    }
+    
+    function formPsychologistById($params){
+
+        if($params === NULL) $this->redirect('psychologists', ['error' => ErrorMessages::ERROR_ADMIN_NEWCATEGORY_EXISTS]);
+        $id = $params[0];
+        error_log("formPsychologistById->". $id);
+        $psicologo =new UserModel();
+        $psicologo->getPsychologistById($id);
+        error_log("formPsychologistById->". $psicologo->getUsername());
+        if($psicologo) {
+            $this->view->render('psychologists/editar',[
+                'user' => $this->user,
+                'psicologo' => $psicologo
+            ]);
+        }
+        else {
+            $this->redirect('psychologists', ['error' => ErrorMessages::ERROR_ADMIN_NEWCATEGORY_EXISTS]);
+        }
+    }
+
+    function updatePsychologist(){
+        if($this->existPOST(['username','nombre','apellido_p','apellido_m','correo', 'password', 'telefono'])){
+            $id = $this->getPost('id');
+            $username = $this->getPost('username');
+            $nombre = $this->getPost('nombre');
+            $apellido_p = $this->getPost('apellido_p');
+            $apellido_m = $this->getPost('apellido_m');
+            $correo = $this->getPost('correo');
+            $password = $this->getPost('password');
+            $telefono = $this->getPost('telefono');
+            
+            error_log($username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono));
+            if($id == '' || empty($id) || $username == ''|| empty($username) || $nombre == '' || empty($nombre) || $apellido_p == '' || empty($apellido_p) || $apellido_m == '' || empty($apellido_m) || $correo == '' || empty($correo) || $password == ''|| empty($password) || $telefono == '' || empty($telefono)){
+                $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EMPTY]);
+            }
+            else{
+                $user =new UserModel();
+                $user->setId($id);
+                $user -> setUsername($username);
+                $user ->setName($nombre);
+                $user ->setLastName($apellido_p);
+                $user ->setMothLastName($apellido_m);
+                $user ->setEmail($correo);
+                $user ->setPassword($password);
+                $user ->setPhone($telefono);
+
+                if ($user->update()){ 
+                    $this->redirect('psychologists',['success' => SuccessMessages::SUCCESS_SIGNUP_NEWUSER]);
+                }else {
+                    $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
+                }
+
+            }
+        }else{
+            $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
+        }
+    }
 }

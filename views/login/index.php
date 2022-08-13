@@ -28,12 +28,8 @@
             </div>
             <div class="boton-style">
               <input type="submit" value="Siguiente" />
-              <!-- enlace al controlador-->
             </div>
           </form>
-          <span class="text-footer">¿Aún no te has registrado?
-            <a href="<?php echo constant('URL');?>/signup">Registrate</a>
-          </span>
         </div>
       </div>
     </div>
