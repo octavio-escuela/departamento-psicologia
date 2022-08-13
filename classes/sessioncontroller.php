@@ -43,6 +43,7 @@ class SessionController extends Controller{
             $role = $this->getUserSessionData()->getRole();
             error_log("sessionController::validateSession(): username:" . $this->user->getUsername() . " - role: " . $this->user->getRole());
             if($this->isPublic()){
+                error_log("sessionController::validateSession():".$this->isPublic());
                 $this->redirectDefaultSiteByRole($role);
                 error_log( "SessionController::validateSession() => sitio público, redirige al main de cada rol" );
             }else {
@@ -84,8 +85,8 @@ class SessionController extends Controller{
 
     function isPublic(){
         $currentURL = $this->getCurrentPage();
-        error_log("sessionController::isPublic(): currentURL => " . $currentURL);
         $currentURL = preg_replace("/\?.*/", "", $currentURL);
+        error_log("sessionController::isPublic(): currentURL => " . $currentURL);
 
         for ($i=0; $i < sizeof($this->sites); $i++) { 
             if ($currentURL === $this->sites[$i]['site'] && $this->sites[$i]['access'] === 'public') {

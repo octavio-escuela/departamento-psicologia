@@ -7,7 +7,6 @@ $data = new Psychologists();
 $pysochologisTable=$data->createPsychologistsTable();
 
 ?>
-<body>
 <div class='dash-content'>
     <h2 style='color:balck;' class='pt-5 pb-4'>vista de psicologos</h2>
     <div class='container'>
@@ -16,7 +15,8 @@ $pysochologisTable=$data->createPsychologistsTable();
                 <!-- Button trigger modal -->
                 <button id='btnNuevo' type='button' class='btn btn-primary' data-bs-toggle='modal'
                     data-bs-target='#staticBackdrop'>
-                    <i class='fa-solid fa-user-plus'></i>
+                    <i class='fa-solid fa-user-plus'> </i>
+                    Registrar Psicologo  
                 </button>
             </div>
         </div>
@@ -45,14 +45,12 @@ $pysochologisTable=$data->createPsychologistsTable();
                                 <td><?php echo $pyschologist->getEmail(); ?></td>
                                 <td><?php echo $pyschologist->getPhone(); ?></td>
                                 <td>
-                                    <button type='button' class='btn btn-primary' data-bs-toggle='modal'
-                                        data-bs-target='#staticBackdrop'>
+                                    <a type='button' class='btn btn-primary' href="<?php echo constant('URL');?>/psychologists/formPsychologistById/<?php echo $pyschologist->getId();?>">
                                         <i class='fa-solid fa-edit'></i>
-                                    </button>
-                                    <button type='button' class='btn btn-danger' data-bs-toggle='modal'
-                                        data-bs-target='#staticBackdrop'>
+                                    </a>
+                                    <a type='button' class='btn btn-danger' href="<?php echo constant('URL');?>/psychologists/delete/<?php echo $pyschologist->getId();?>">
                                         <i class='fa-solid fa-trash-alt'></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                              <?php }?>
@@ -77,7 +75,7 @@ $pysochologisTable=$data->createPsychologistsTable();
                         <div class="fondo">
                             <div class="contenedor">
                                 <div class="formulario">
-                                    <form action="<?php echo constant('URL');?>/signup/newUser" method="POST">
+                                    <form action="<?php echo constant('URL');?>/psychologists/newUser" method="POST">
                                         <div class="mb-3">
                                             <input class="form-control" type="text" name="username" placeholder="Usuario" />
                                         </div>
@@ -119,26 +117,11 @@ $pysochologisTable=$data->createPsychologistsTable();
     </div>
 </div>
 </section>
-<script src='public/js/script.js'></script>
+<!-- <script src='public/js/script.js'></script> -->
 <script src="public/js/bootstrap.min.js"></script>
 <script src="public/js/jquery.js"></script> 
     <script src="public/js/jquery.dataTables.min.js"></script> 
 <script>
-    // var tabla = document.querySelector('#tabla');
-    // var dataTable = new DataTable(tabla, {
-    //     "ajax": {
-    //         "url": "http://localhost/departamento-psicologia/psychologists/createPsychologistsTable",
-    //         "dataSrc": ""
-    //         "type": "GET"
-    //     },
-    //     "columns": [
-    //         { "data": "id" },
-    //         { "data": "nombre" },
-    //         { "data": "apellido_p" },
-    //         { "data": "correo" },
-    //         { "data": "telefono" }
-    //     ]
-    // });
     $(document).ready(function() {
         $('#tabla').DataTable({
             language : {

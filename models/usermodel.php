@@ -8,7 +8,7 @@ class UserModel extends Model implements IModel{
     private $apellido_p;
     private $apellido_m;
     private $correo;
-    private $contraseña;
+    private $contrasena;
     private $telefono;
     private $rol;
 
@@ -21,31 +21,16 @@ class UserModel extends Model implements IModel{
         $this->apellido_p="";
         $this->apellido_m="";
         $this->correo="";
-        $this->contraseña="";
+        $this->contrasena="";
         $this->telefono="";
         $this->rol="";
     }
 
     
-    // function updateBudget($budget, $iduser){
-    //     try{
-    //         $query = $this->db->connect()->prepare('UPDATE users SET budget = :val WHERE id = :id');
-    //         $query->execute(['val' => $budget, 'id' => $iduser]);
 
-    //         if($query->rowCount() > 0){
-    //             return true;
-    //         }else{
-    //             return false;
-    //         }
-        
-    //     }catch(PDOException $e){
-    //         return NULL;
-    //     }
-    // }
-
-    // function updateName($name, $iduser){
+    // function updatePhoto($name, $iduser){
     //     try{
-    //         $query = $this->db->connect()->prepare('UPDATE users SET name = :val WHERE id = :id');
+    //         $query = $this->db->connect()->prepare('UPDATE users SET photo = :val WHERE id = :id');
     //         $query->execute(['val' => $name, 'id' => $iduser]);
 
     //         if($query->rowCount() > 0){
@@ -58,22 +43,6 @@ class UserModel extends Model implements IModel{
     //         return NULL;
     //     }
     // }
-
-    function updatePhoto($name, $iduser){
-        try{
-            $query = $this->db->connect()->prepare('UPDATE users SET photo = :val WHERE id = :id');
-            $query->execute(['val' => $name, 'id' => $iduser]);
-
-            if($query->rowCount() > 0){
-                return true;
-            }else{
-                return false;
-            }
-        
-        }catch(PDOException $e){
-            return NULL;
-        }
-    }
 
     function updatePassword($new, $iduser){
         try{
@@ -97,7 +66,7 @@ class UserModel extends Model implements IModel{
             $query = $this->db->connect()->prepare('SELECT id, password FROM tbl_usuario WHERE id = :id');
             $query->execute(['id' => $userid]);
             
-            if($row = $query->fetch(PDO::FETCH_ASSOC)) return password_verify($current, $row['contraseña']);
+            if($row = $query->fetch(PDO::FETCH_ASSOC)) return password_verify($current, $row['contrasena']);
 
             return NULL;
         }catch(PDOException $e){
@@ -116,7 +85,7 @@ class UserModel extends Model implements IModel{
                 'apellido_p'    =>  $this->apellido_p,
                 'apellido_m'    =>  $this->apellido_m,
                 'correo'        =>  $this->correo,
-                'contrasena'    =>  $this->contraseña,
+                'contrasena'    =>  $this->contrasena,
                 'telefono'      =>  $this->telefono,
                 'rol'           =>  $this->selectRole($this->rol)
                 ]);
@@ -189,7 +158,22 @@ class UserModel extends Model implements IModel{
             echo $e;
         }
     }
+    public function getPsychologistById($id){
+        $items = [];
+        error_log("id: ".$id);
+        try{
+            $query = $this->prepare('SELECT * FROM tbl_usuario WHERE id = :id');
+            $query->execute(['id' => $id]);
 
+            if($psychologist = $query->fetch(PDO::FETCH_ASSOC)){
+                $this->from($psychologist);
+                return $this;
+            }
+            
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
     /**
      *  Gets an item
      */
@@ -205,7 +189,7 @@ class UserModel extends Model implements IModel{
             $this->apellido_p   = $user['apellido_p'] ?? '';
             $this->apellido_m   = $user['apellido_m'] ?? '';
             $this->correo       = $user['correo'] ?? '';
-            $this->contraseña   = $user['contrasena'] ?? '';
+            $this->contrasena   = $user['contrasena'] ?? '';
             $this->telefono     = $user['telefono'] ?? '';
             $this->rol          = $user['rol'] ?? '';
             return $this;
@@ -227,7 +211,7 @@ class UserModel extends Model implements IModel{
 
     public function update(){
         try{
-            $query = $this->prepare('UPDATE tbl_usuario SET usuario = :usuario, nombre = :nombre, apellido_p = :apellido_p, apellido_m = :apellido_m, correo = :correo, contraseña = :contrasena, telefono = :telefono WHERE id = :id');
+            $query = $this->prepare('UPDATE tbl_usuario SET usuario = :usuario, nombre = :nombre, apellido_p = :apellido_p, apellido_m = :apellido_m, correo = :correo, contrasena = :contrasena, telefono = :telefono WHERE id = :id');
             $query->execute([
                 'id'            =>  $this->id,
                 'usuario'       =>  $this->usuario,
@@ -235,12 +219,12 @@ class UserModel extends Model implements IModel{
                 'apellido_p'    =>  $this->apellido_p,
                 'apellido_m'    =>  $this->apellido_m,
                 'correo'        =>  $this->correo,
-                'contrasena'    =>  $this->contraseña,
+                'contrasena'    =>  $this->contrasena,
                 'telefono'      =>  $this->telefono
                 ]);
             return true;
         }catch(PDOException $e){
-            echo $e;
+            error_log($e);
             return false;
         }
     }
@@ -256,7 +240,7 @@ class UserModel extends Model implements IModel{
                 return false;
             }
         }catch(PDOException $e){
-            echo $e;
+            error_log($e);
             return false;
         }
     }
@@ -269,13 +253,13 @@ class UserModel extends Model implements IModel{
         $this->apellido_p   = $array['apellido_p'];
         $this->apellido_m   = $array['apellido_m'];
         $this->correo       = $array['correo'];
-        $this->contraseña   = $array['contrasena'];
+        $this->contrasena   = $array['contrasena'];
         $this->telefono     = $array['telefono'];
 
     }
 
-    private function getHashedPassword($contraseña){
-        return password_hash($contraseña, PASSWORD_DEFAULT, ['cost' => 10]);
+    private function getHashedPassword($contrasena){
+        return password_hash($contrasena, PASSWORD_DEFAULT, ['cost' => 10]);
     }
 
     
@@ -286,11 +270,11 @@ class UserModel extends Model implements IModel{
     public function setMothLastName($apellido_m){   $this->apellido_m = $apellido_m;}
     public function setEmail($correo){              $this->correo = $correo;}
     //FIXME: validar si se requiere el parametro de hash
-    public function setPassword($contraseña, $hash = true){ 
+    public function setPassword($contrasena, $hash = true){ 
         if($hash){
-            $this->contraseña = $this->getHashedPassword($contraseña);
+            $this->contrasena = $this->getHashedPassword($contrasena);
         }else{
-            $this->contraseña = $contraseña;
+            $this->contrasena = $contrasena;
         }
     }
     public function setPhone($telefono){            $this->telefono = $telefono;}
@@ -304,7 +288,7 @@ class UserModel extends Model implements IModel{
     public function getLastName(){          return  $this->apellido_p;}
     public function getMothLastName(){      return  $this->apellido_m;}
     public function getEmail(){             return  $this->correo;}
-    public function getPassword(){          return  $this->contraseña;}
+    public function getPassword(){          return  $this->contrasena;}
     public function getPhone(){             return  $this->telefono;}
     public function getRole(){              return  $this->rol;}
 }

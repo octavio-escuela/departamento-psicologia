@@ -1,14 +1,17 @@
 <?php
 
 class Signup extends SessionController{
-
+    private $user;
     function __construct(){
         parent::__construct();
+        $this->user = $this->getUserSessionData();
     }
 
     function render(){
         $this->view->errorMessage = '';
-        $this->view->render('psychologists/index',[]);
+        $this->view->render('psychologists/signup',[
+            'user' => $this->user
+        ]);
     }
     function newUser(){
         if($this->existPOST(['username','nombre','apellido_p','apellido_m','correo', 'password', 'telefono'])){
@@ -41,7 +44,7 @@ class Signup extends SessionController{
                 if($user->exists($username)){
                     $this->redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER_EXISTS]);
                 }else if($user->save()){
-                    $this->redirect('',['success' => SuccessMessages::SUCCESS_SIGNUP_NEWUSER]);
+                    $this->redirect('psychologists',['success' => SuccessMessages::SUCCESS_SIGNUP_NEWUSER]);
                 }else{
                     $this-> redirect('psychologists',['error' => ErrorMessages::ERROR_SIGNUP_NEWUSER]);
                 }
