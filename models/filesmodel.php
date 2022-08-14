@@ -91,6 +91,7 @@ class FilesModel extends Model implements IModel{
             $this->motivo = $file['MotivoConsulta'];
             $this->descripcion = $file['Descripcion'];
             $this->setFecha($file['Fecha']);
+            $this->setAtendio($file['Atendio']);
             $this->idAlumno = $file['IdAlumno'];
             $this->setIdUsuario($file['IdUsuario']);
 
@@ -117,7 +118,8 @@ class FilesModel extends Model implements IModel{
             $query=$this->prepare('UPDATE Expediente SET 
                 TiempoResidencia = :tiempo, Religion = :religion, Ocupacion = :ocupacion, 
                 MotivoConsulta = :motivo, Descripcion = :descr, IdAlumno = :idAlumno,
-                IdUsuario = :idUsuario, Fecha = :fecha WHERE IdExpediente = :id');
+                IdUsuario = :idUsuario, Fecha = :fecha, Atendio = :atendio 
+                WHERE IdExpediente = :id');
             $query->exceute([
                 'tiempo' => $this->tiempoResidencia,
                 'religion' => $this->religion,
@@ -125,6 +127,7 @@ class FilesModel extends Model implements IModel{
                 'motivo' => $this->motivo,
                 'descr' => $this->descripcion,
                 'fecha' => $this->fecha,
+                'atendio' => $this->atendio,
                 'idAlumno' => $this->idAlumno,
                 'idUsuario' => $this->idUsuario,
                 'id' => $this->idExpediente
@@ -143,6 +146,7 @@ class FilesModel extends Model implements IModel{
         $this->descripcion = $array['Descripcion'];
         $this->idAlumno = $array['IdAlumno']; 
         $this->setFecha($array['Fecha']);
+        $this->setAtendio($array['Atendio']);
         $this->setIdUsuario($array['IdUsuario']);
         $this->setIdExpediente($array['IdExpediente']);
 
