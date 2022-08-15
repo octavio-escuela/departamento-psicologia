@@ -2,39 +2,49 @@
 
 class FilesModel extends Model implements IModel{
 
+    private $idExpediente;
     private $idAlumno;
+    private $atendio;
     private $tiempoResidencia;
     private $religion;
     private $ocupacion;
     private $motivoConsulta;
     private $descripcion;
+    private $fecha;
     private $idUsuario;
 
     public function __construct(){
 
         parent::__construct();
 
-        $idAlumno = "";
+        $IdExpediente = "";
+        $IdAlumno = "";
+        $atendio = "";
         $tiempoResidencia = "";
         $religion = "";
         $ocupacion = "";
         $motivoConsulta = "";
         $descripcion = "";
+        $fecha = "";
         $idUsuario = "";
     }
 
     public function save() { 
         try{
-            $query = $this->prepare('INSERT INTO tbl_expediente 
-                (tiempoResidencia, religion, ocupacion, motivo, descripcion, idAlumno, idUsuario)
-                VALUES (:tiempo, :religion,:ocupacion,:motivo,:descr,:idalumno, :idUsuario)');
+            $query = $this->prepare('INSERT INTO Expediente 
+                (IdAlumno, Atendio, TiempoResidencia, Religion, Ocupacion,
+                    MotivoConsulta, Descripcion, Fecha, IdUsuario)
+                VALUES (:idalumno, :atendio, :tiempo, :religion,:ocupacion,
+                    :motivo, :descr, :fecha, :idUsuario)');
             $query->execute([
                 'tiempo' => $this->tiempoResidencia,
+                'atendio' => $this->atendio,
                 'religion' => $this->religion,
                 'ocupacion' => $this->ocupacion,
                 'motivo' => $this->motivoConsulta,
                 'descr' => $this->descripcion,
                 'idAlumno' => $this->idAlumno,
+                'fecha' => $this->fecha,
                 'idUsuario' => $this->idUsuario
             ]);
             return true;
@@ -45,18 +55,20 @@ class FilesModel extends Model implements IModel{
     }
 
     public function getAll(){
-        $items = [];
         try{
-            $query = $this->query('SELECT * FROM tbl_expediente');
+            $items = [];
+            $query = $this->query('SELECT * FROM Expediente');
             while ($p = $query->fetch(PDO::FETCH_ASSOC)) {
                 $item = new FilesModel();
-                $item->setTiempoResidencia($p['tiempoResidencia']);
-                $item->setReligion($p['religion']);
-                $item->setOcupacion($p['ocupacion']);
-                $item->setMotivo($p['motivo']);
-                $item->setDescripcion($p['descripcion']);
-                $item->setIdAlumno($p['idAlumno']);
-                $item->setIdUsuario($p['idUsuario']);
+                $item->setAtendio($p['Atendio']);
+                $item->setTiempoResidencia($p['TiempoResidencia']);
+                $item->setReligion($p['Religion']);
+                $item->setOcupacion($p['Ocupacion']);
+                $item->setMotivo($p['MotivoConsulta']);
+                $item->setDescripcion($p['Descripcion']);
+                $item->setIdAlumno($p['IdAlumno']);
+                $item->setFecha($p['Fecha']);
+                $item->setIdUsuario($p['IdUsuario']);
                 array_push($items,$item);
             }
             return $items;
@@ -67,18 +79,21 @@ class FilesModel extends Model implements IModel{
     
     public function get($id){
         try{
-            $query = $this->prepare('SELECT * FROM tbl_expediente WHERE idExpediente = :id');
+            $query = $this->prepare('SELECT * FROM Expediente WHERE 
+                IdExpediente = :id');
             $query->exeute(['id' => $id]);
             $file = $query->fetch(PDO::FETCH_ASSOC);
 
-            $this->id = $file['idExpediente'];
-            $this->tiempoResidencia = $file['tiempoResidencia'];
-            $this->getReligion = $file['religion'];
-            $this->ocupacion = $file['ocupacion'];
-            $this->motivo = $file['motivo'];
-            $this->descripcion = $file['descripcion'];
-            $this->idAlumno = $file['idAlumno'];
-            $this->setIdUsuario($file['idUsuario']);
+            $this->id = $file['IdExpediente'];
+            $this->tiempoResidencia = $file['TiempoResidencia'];
+            $this->getReligion = $file['Religion'];
+            $this->ocupacion = $file['Ocupacion'];
+            $this->motivo = $file['MotivoConsulta'];
+            $this->descripcion = $file['Descripcion'];
+            $this->setFecha($file['Fecha']);
+            $this->setAtendio($file['Atendio']);
+            $this->idAlumno = $file['IdAlumno'];
+            $this->setIdUsuario($file['IdUsuario']);
 
             return $this;
         }catch(PDOException $e){
@@ -89,7 +104,7 @@ class FilesModel extends Model implements IModel{
 
     public function delete($id){
         try{
-            $query = $this->prepare('DELETE FROM tbl_expediente WHERE idExpediente = :id');
+            $query = $this->prepare('DELETE FROM Expediente WHERE IdExpediente = :id');
             $query->exceute(['id' => $id]);
             return true;
         }catch(PDOException $e){
@@ -100,18 +115,22 @@ class FilesModel extends Model implements IModel{
 
     public function update(){
         try{
-            $query=$this->prepare('UPDATE tbl_expediente SET 
-                tiempoResidencia = :tiempo, religion = :religion, ocupacion = :ocupacion, 
-                motivo = :motivo, descripcion = :descr, idAlumno = :idAlumno,
-                idUsuario = :idUsuario');
+            $query=$this->prepare('UPDATE Expediente SET 
+                TiempoResidencia = :tiempo, Religion = :religion, Ocupacion = :ocupacion, 
+                MotivoConsulta = :motivo, Descripcion = :descr, IdAlumno = :idAlumno,
+                IdUsuario = :idUsuario, Fecha = :fecha, Atendio = :atendio 
+                WHERE IdExpediente = :id');
             $query->exceute([
                 'tiempo' => $this->tiempoResidencia,
                 'religion' => $this->religion,
                 'ocupacion' => $this->ocupacion,
                 'motivo' => $this->motivo,
                 'descr' => $this->descripcion,
+                'fecha' => $this->fecha,
+                'atendio' => $this->atendio,
                 'idAlumno' => $this->idAlumno,
-                'idUsuario' => $this->idUsuario
+                'idUsuario' => $this->idUsuario,
+                'id' => $this->idExpediente
             ]);
         }catch(PDOException $e){
             error_log($e);
@@ -120,19 +139,25 @@ class FilesModel extends Model implements IModel{
     }
 
     public function from($array){
-        $this->tiempoResidencia = $array['tiempoResidencia'];
-        $this->religion = $array['religion'];
-        $this->ocupacion = $array['ocupacion'];
-        $this->motivo = $array['motivacion'];
-        $this->descripcion = $array['descripcion'];
-        $this->idAlumno = $array['idAlumno']; 
-        $this->setIdUsuario($array['idUsuario']);
+        $this->tiempoResidencia = $array['TiempoResidencia'];
+        $this->religion = $array['Religion'];
+        $this->ocupacion = $array['Ocupacion'];
+        $this->motivo = $array['MotivoConsulta'];
+        $this->descripcion = $array['Descripcion'];
+        $this->idAlumno = $array['IdAlumno']; 
+        $this->setFecha($array['Fecha']);
+        $this->setAtendio($array['Atendio']);
+        $this->setIdUsuario($array['IdUsuario']);
+        $this->setIdExpediente($array['IdExpediente']);
+
     }
 
+    public function setIdExpediente($idExpediente){
+        $this->idExpediente = $idExpediente;
+    }
     public function setTiempoResidencia($tiempo){   
         $this->tiempoResidencia = $tiempo;
     }
-
     public function setReligion($religion){         
         $this->religion = $religion;
     }
@@ -150,6 +175,13 @@ class FilesModel extends Model implements IModel{
     }
     public function setIdUsuario($idUsuario){
         $this->idUsuario = $idUsuario;
+    }
+    public function setAtendio($atendio){
+        $this->atendio = $atendio;
+    }
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
     }
 
     public function getTiempoResidencia(){  
