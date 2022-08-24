@@ -19,6 +19,25 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
+                                <label for="">Atendió</label>
+                                <input type="text" class="form-control" 
+                                    id="atendio" name="atendio" 
+                                    placeholder="Atendió">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Fecha</label>
+                                <input type="date" class="form-control" 
+                                    id="fecha" name="fecha">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label for="">Nombre del alumno</label>
                                 <input type="text" class="form-control" 
                                     id="nombre" name="nombre" 
@@ -96,4 +115,80 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" 
+                                    id="idAlumno" name="idAlumno">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Tiempo de residencia</label>
+                                <input type="text" class="form-control" 
+                                    id="tiempoResidencia" name="tiempoResidencia" 
+                                    placeholder="Tiempo de residencia">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Religión</label>
+                                <input type="text" class="form-control" 
+                                    id="religion" name="religion" 
+                                    placeholder="Religion">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Ocupación</label>
+                                <input type="text" class="form-control" 
+                                    id="ocupacion" name="ocupacion" 
+                                    placeholder="Ocupación">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Motivo de consulta</label>
+                                <input type="text" class="form-control" 
+                                    id="motivoConsulta" name="motivoConsulta" 
+                                    placeholder="Motivo de consulta">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Descripción</label>
+                                <input type="text" class="form-control" 
+                                    id="descripcion" name="descripcion" 
+                                    placeholder="Descripción">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" 
+                                    id="idUsuario" name="idUsuario" 
+                                    value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="input" class="form-control" 
+                                    value="Agregar expediente">
+                            </div>
+                        </div>
+                    </div>
+
    </form>

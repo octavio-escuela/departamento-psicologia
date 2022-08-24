@@ -25,12 +25,23 @@ class Files extends SessionController{
         return $items[0];
     }
     public function registerNewFile(){
-        if ()
+        if ($this->arePOSTArgumentsValid()){
+            $filesModel = new FilesModel();
+            $filesModel->from($_POST);
+            if($filesModel->save()){
+
+            }else{
+                $this->redirect('files',['error' =>
+                ErrorMessages::ERROR_FILES_FAILED_INSERT_QUERY]);
+            }
+            $this->render();
+        }else {
+            $this->redirect('files',['error' => ErrorMessages::ERROR_FILES_MISSING_DATA] );
+        }
     }
 
     private function arePOSTArgumentsValid(){
-        if ($this->existPOST(['alumnoId',  ]))
-        
+        //if ($this->existPOST(['alumnoId', ]))
     }
     
 }
