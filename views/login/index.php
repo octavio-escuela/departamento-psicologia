@@ -1,19 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="es">
   <head>
-    <!-- meta tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>departamento psicologia</title>
-    <!-- Estilos css -->
     <link rel="stylesheet" href="public/css/login.css" />
-  </head>
+    </head>
 
   <body>
-    <p><?php
+    <p>
+    <?php
+    
       $this->showMessages();
-    ?>
+    ?>    
     </p>
     <div class="fondo">
       <div class="contenedor">

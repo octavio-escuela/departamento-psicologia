@@ -34,7 +34,7 @@ class FilesModel extends Model implements IModel{
             $query = $this->prepare('INSERT INTO Expediente 
                 (IdAlumno, Atendio, TiempoResidencia, Religion, Ocupacion,
                     MotivoConsulta, Descripcion, Fecha, IdUsuario)
-                VALUES (:idalumno, :atendio, :tiempo, :religion,:ocupacion,
+                VALUES (:idAlumno, :atendio, :tiempo, :religion, :ocupacion,
                     :motivo, :descr, :fecha, :idUsuario)');
             $query->execute([
                 'tiempo' => $this->tiempoResidencia,
@@ -81,14 +81,14 @@ class FilesModel extends Model implements IModel{
         try{
             $query = $this->prepare('SELECT * FROM Expediente WHERE 
                 IdExpediente = :id');
-            $query->exeute(['id' => $id]);
+            $query->execute(['id' => $id]);
             $file = $query->fetch(PDO::FETCH_ASSOC);
 
-            $this->id = $file['IdExpediente'];
+            $this->idExpediente = $file['IdExpediente'];
             $this->tiempoResidencia = $file['TiempoResidencia'];
-            $this->getReligion = $file['Religion'];
+            $this->religion = $file['Religion'];
             $this->ocupacion = $file['Ocupacion'];
-            $this->motivo = $file['MotivoConsulta'];
+            $this->motivoConsulta = $file['MotivoConsulta'];
             $this->descripcion = $file['Descripcion'];
             $this->setFecha($file['Fecha']);
             $this->setAtendio($file['Atendio']);
@@ -105,7 +105,7 @@ class FilesModel extends Model implements IModel{
     public function delete($id){
         try{
             $query = $this->prepare('DELETE FROM Expediente WHERE IdExpediente = :id');
-            $query->exceute(['id' => $id]);
+            $query->execute(['id' => $id]);
             return true;
         }catch(PDOException $e){
             error_log($e);
@@ -120,11 +120,11 @@ class FilesModel extends Model implements IModel{
                 MotivoConsulta = :motivo, Descripcion = :descr, IdAlumno = :idAlumno,
                 IdUsuario = :idUsuario, Fecha = :fecha, Atendio = :atendio 
                 WHERE IdExpediente = :id');
-            $query->exceute([
+            $query->execute([
                 'tiempo' => $this->tiempoResidencia,
                 'religion' => $this->religion,
                 'ocupacion' => $this->ocupacion,
-                'motivo' => $this->motivo,
+                'motivo' => $this->motivoConsulta,
                 'descr' => $this->descripcion,
                 'fecha' => $this->fecha,
                 'atendio' => $this->atendio,
@@ -139,17 +139,15 @@ class FilesModel extends Model implements IModel{
     }
 
     public function from($array){
-        $this->tiempoResidencia = $array['TiempoResidencia'];
-        $this->religion = $array['Religion'];
-        $this->ocupacion = $array['Ocupacion'];
-        $this->motivo = $array['MotivoConsulta'];
-        $this->descripcion = $array['Descripcion'];
-        $this->idAlumno = $array['IdAlumno']; 
-        $this->setFecha($array['Fecha']);
-        $this->setAtendio($array['Atendio']);
-        $this->setIdUsuario($array['IdUsuario']);
-        $this->setIdExpediente($array['IdExpediente']);
-
+        $this->tiempoResidencia = $array['tiempoResidencia'];
+        $this->religion = $array['religion'];
+        $this->ocupacion = $array['ocupacion'];
+        $this->motivoConsulta = $array['motivoConsulta'];
+        $this->descripcion = $array['descripcion'];
+        $this->idAlumno = $array['idAlumno']; 
+        $this->setFecha($array['fecha']);
+        $this->setAtendio($array['atendio']);
+        $this->setIdUsuario($array['idUsuario']);
     }
 
     public function setIdExpediente($idExpediente){
@@ -165,7 +163,7 @@ class FilesModel extends Model implements IModel{
         $this->ocupacion = $ocupacion;
     }
     public function setMotivo($motivo){             
-        $this->motivo = $motivo;
+        $this->motivoConsulta = $motivo;
     }
     public function setDescripcion($descripcion){   
         $this->descripcion = $descripcion;
@@ -194,7 +192,7 @@ class FilesModel extends Model implements IModel{
         return $this->ocupacion;
     }
     public function getMotivo(){            
-        return $this->motivo;
+        return $this->motivoConsulta;
     }
     public function getDescripcion(){       
         return $this->descripcion;

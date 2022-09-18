@@ -70,8 +70,8 @@ class Students extends SessionController{
         $student ->setGenero($this->getPost('genero'));
         $student ->setLugar($this->getPost('lugar'));
         $student ->setDomicilio($this->getPost('domicilio'));
-        $student ->setPhone($this->getPost('telefono'));
-        $student ->setCelular($this->getPost('celular'));
+        $student ->setTelefonoCasa($this->getPost('telefono'));
+        $student ->setTelefonoCelular($this->getPost('celular'));
 
         $student->save();
         $this->redirect('students', ['success' => SuccessMessages::SUCCESS_STUDENTS_NEWSTUDENT]);

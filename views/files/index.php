@@ -1,5 +1,5 @@
-
 <!-- generador de expediente de alumno -->
+<?php require_once ('views/template/sidebar.php'); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -8,6 +8,7 @@
             </div>
         </div>
     </div>
+<form action="<?php echo constant('URL'); ?>/files/registerNewFile" method="POST">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -18,16 +19,49 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nombre del alumno</label>
-                                <input type="text" class="form-control" id="nombre_alumno" placeholder="Nombre del alumno">
+                                <label for="">Atendió</label>
+                                <input type="text" class="form-control" 
+                                    id="atendio" name="atendio" 
+                                    placeholder="Atendió">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Apellido del alumno</label>
-                                <input type="text" class="form-control" id="apellido_alumno" placeholder="Apellido del alumno">
+                                <label for="">Fecha</label>
+                                <input type="date" class="form-control" 
+                                    id="fecha" name="fecha">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Nombre del alumno</label>
+                                <input type="text" class="form-control" 
+                                    id="nombre" name="nombre" 
+                                    placeholder="Nombre del alumno">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Apellido paterno del alumno</label>
+                                <input type="text" class="form-control" 
+                                    id="apellido_paterno" name="apellidoPaterno"
+                                    placeholder="Apellido paterno del alumno">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Apellido materno del alumno</label>
+                                <input type="text" class="form-control" 
+                                    id="apellido_materno" name="apellidoMaterno"
+                                    placeholder="Apellido materno del alumno">
                             </div>
                         </div>
                     </div>
@@ -35,7 +69,9 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fecha_nacimiento" placeholder="Fecha de nacimiento">
+                                <input type="date" class="form-control" 
+                                    id="fecha_nacimiento" name="fechaNacimiento"
+                                    placeholder="Fecha de nacimiento">
                             </div>
                         </div>
                     </div>
@@ -43,7 +79,9 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Lugar de nacimiento</label>
-                                <input type="text" class="form-control" id="lugar_nacimiento" placeholder="Lugar de nacimiento">
+                                <input type="text" class="form-control" 
+                                    id="lugar_nacimiento" name="lugar" 
+                                    placeholder="Lugar de nacimiento">
                             </div>
                         </div>
                     </div>
@@ -51,88 +89,118 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Dirección</label>
-                                <input type="text" class="form-control" id="direccion" placeholder="Dirección">
+                                <input type="text" class="form-control" 
+                                    id="direccion" name="direccion" 
+                                    placeholder="Dirección">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Teléfono</label>
-                                <input type="text" class="form-control" id="telefono" placeholder="Teléfono">
+                                <label for="">Teléfono de casa</label>
+                                <input type="text" class="form-control" 
+                                    id="telefonoCasa" name="telefonoCasa"
+                                    placeholder="Teléfono de Casa">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Celular</label>
-                                <input type="text" class="form-control" id="celular" placeholder="Celular">
+                                <label for="">Teléfono Celular</label>
+                                <input type="text" class="form-control" 
+                                    id="celular" name="telefonoCelular" 
+                                    placeholder="Teléfono celular">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Correo electrónico</label>
-                                <input type="text" class="form-control" id="correo" placeholder="Correo electrónico">
+                                <input type="hidden" class="form-control" 
+                                    id="idAlumno" name="idAlumno">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nombre del padre</label>
-                                <input type="text" class="form-control" id="nombre_padre" placeholder="Nombre del padre">
+                                <label for="">Tiempo de residencia</label>
+                                <input type="text" class="form-control" 
+                                    id="tiempoResidencia" name="tiempoResidencia" 
+                                    placeholder="Tiempo de residencia">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nombre de la madre</label>
-                                <input type="text" class="form-control" id="nombre_madre" placeholder="Nombre de la madre">
+                                <label for="">Religión</label>
+                                <input type="text" class="form-control" 
+                                    id="religion" name="religion" 
+                                    placeholder="Religion">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nombre del tutor</label>
-                                <input type="text" class="form-control" id="nombre_tutor" placeholder="Nombre del tutor">
+                                <label for="">Ocupación</label>
+                                <input type="text" class="form-control" 
+                                    id="ocupacion" name="ocupacion" 
+                                    placeholder="Ocupación">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nombre del representante</label>
-                                <input type="text" class="form-control" id="nombre_representante" placeholder="Nombre del representante">
+                                <label for="">Motivo de consulta</label>
+                                <input type="text" class="form-control" 
+                                    id="motivoConsulta" name="motivoConsulta" 
+                                    placeholder="Motivo de consulta">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Parentesco</label>
-                                <input type="text" class="form-control" id="parentesco" placeholder="Parentesco">
+                                <label for="">Descripción</label>
+                                <input type="text" class="form-control" 
+                                    id="descripcion" name="descripcion" 
+                                    placeholder="Descripción">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" 
+                                    id="idAlumno" name="idAlumno" 
+                                    value="1">
+                                    <!-- TODO conseguir el idAlumno -->
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Teléfono del representante</label>
-                                <input type="text" class="form-control" id="telefono_representante" placeholder="Teléfono del representante">
+                                <input type="hidden" class="form-control" 
+                                    id="idUsuario" name="idUsuario" 
+                                    value="1">
+                                    <!-- TODO conseguir el idUsuario -->
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Celular del representante</label>
-                                <input type="text" class="form-control" id="celular_representante" placeholder="Celular del representante">
+                                <input type="submit" class="form-control" 
+                                    value="Agregar expediente">
                             </div>
                         </div>
                     </div>
-                
+
+   </form>

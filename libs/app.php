@@ -23,7 +23,7 @@ class App{
             $controller->loadModel('login');
             //se renderiza la vista
             $controller->render();
-            return false;
+            return;
         }
 
         //en caso de que la url si especifique un controlador
