@@ -2,6 +2,8 @@
 /*controlador base por el cual todos los otros 
  controladores van a estar heredando*/
 class Controller{
+    public $view;
+    public $model;
     function __construct(){
         $this->view = new View();
     }
@@ -18,10 +20,7 @@ class Controller{
         }
     }
 
-    //permitira que cuando reciva parametros para meter a la base de datos
-    //en lugar de poner isset post simplifique eso
     function existPOST($params){
-        //params es un arreglo el cual me perimite validar todos los parametros que existan en el metodo post 
         foreach($params as $param){
             if(!isset($_POST[$param])){
                 return false;
@@ -29,7 +28,7 @@ class Controller{
         }
         return true;
     }
-    //lo mismo pero en lugar de revisar pos por revisa por get
+
     function existGET($params){
         foreach($params as $param){
             if(!isset($_GET[$param])){

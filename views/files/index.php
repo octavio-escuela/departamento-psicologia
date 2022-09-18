@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-<form action="<?php constant('URL') ?>/files/registerNewFile" method="POST">
+<form action="<?php echo constant('URL'); ?>/files/registerNewFile" method="POST">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <label for="">Fecha de nacimiento</label>
                                 <input type="date" class="form-control" 
-                                    id="fecha_nacimiento" name="fecha"
+                                    id="fecha_nacimiento" name="fechaNacimiento"
                                     placeholder="Fecha de nacimiento">
                             </div>
                         </div>
@@ -173,19 +173,31 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <input type="hidden" class="form-control" 
-                                    id="idUsuario" name="idUsuario" 
-                                    value="">
+                                    id="idAlumno" name="idAlumno" 
+                                    value="1">
+                                    <!-- TODO conseguir el idAlumno -->
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="input" class="form-control" 
+                                <input type="hidden" class="form-control" 
+                                    id="idUsuario" name="idUsuario" 
+                                    value="1">
+                                    <!-- TODO conseguir el idUsuario -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="submit" class="form-control" 
                                     value="Agregar expediente">
                             </div>
                         </div>

@@ -16,20 +16,11 @@ class Files extends SessionController{
         ]);
     }
 
-    public function getFirstJoinExpedienteAlumno($studentId){
-        $join = new JoinStudentFilesModel();
-        $items = $join->getAll($studentId);
-        if(!$items){
-            return false;
-        }
-        return $items[0];
-    }
     public function registerNewFile(){
         if ($this->arePOSTArgumentsValid()){
             $filesModel = new FilesModel();
             $filesModel->from($_POST);
             if($filesModel->save()){
-
             }else{
                 $this->redirect('files',['error' =>
                 ErrorMessages::ERROR_FILES_FAILED_INSERT_QUERY]);
@@ -41,7 +32,18 @@ class Files extends SessionController{
     }
 
     private function arePOSTArgumentsValid(){
-        //if ($this->existPOST(['alumnoId', ]))
+        if ($this->existPOST(['atendio','fecha','nombre','apellidoPaterno',
+        'apellidoMaterno','fechaNacimiento','lugar','direccion','telefonoCasa',
+        'telefonoCelular', 'idAlumno','tiempoResidencia','religion','ocupacion',
+        'motivoConsulta','descripcion','idUsuario']) && !empty($_POST['idAlumno'])
+        && !empty($_POST['tiempoResidencia']) && !empty($_POST['religion']) 
+        && !empty($_POST['ocupacion']) && !empty($_POST['motivoConsulta'])
+        && !empty($_POST['descripcion']) && !empty($_POST['idUsuario'])){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
 }

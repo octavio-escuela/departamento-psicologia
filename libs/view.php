@@ -2,6 +2,7 @@
 //este archivo va a servir para cargar todas las vista de cualquier cosa 
 //que se tenga que mostrar ya sean errores o vistas
 class View{
+    public $d;
     function __construct(){
 
     }
