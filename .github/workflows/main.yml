@@ -18,7 +18,7 @@ jobs:
         server: ${{ secrets.FTP_SITE }}
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        sever-dir: public_html/
+        server-dir: public_html/
         exclude: |
           **/.vscode/*
           **/README.md
