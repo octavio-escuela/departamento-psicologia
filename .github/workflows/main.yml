@@ -23,3 +23,6 @@ jobs:
           **/.vscode/*
           **/README.md
           **/TODO.drawio
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
