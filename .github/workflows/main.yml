@@ -8,10 +8,19 @@ name: ftp-deplyment
 jobs:
   web-deploy:
     name:  Deploy
+    environment: x10hosting
     runs-on: ubuntu-latest
     steps:
     - name: Get latest code
       uses: actions/checkout@v2
+    - name: Create environment variables
+      run: |
+        ./deploy.sh ${{ secrets.SITE_URL }} \
+                    ${{ secrets.SITE_HOST }} \
+                    ${{ secrets.DATABASE_NAME }} \
+                    ${{ secrets.DATABASE_USER }} \
+                    ${{ secrets.DATABASE_PASSWORD }}
+          
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
@@ -26,3 +35,4 @@ jobs:
           **/.git*
           **/.git*/**
           **/node_modules/**
+          deploy.sh
