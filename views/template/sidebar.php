@@ -10,13 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?php echo constant('URL');?>/public/css/sidebar2.css">
-    <link rel="stylesheet" href="<?php echo constant('URL');?>/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo constant('URL');?>/public/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="<?php echo constant('URL');?>/public/css/bootstrap.min.css">
 
-    <!-- dataTables -->
-    <!-- <link rel="stylesheet" href="public/Datatable/css"> -->
-    <!-- <script src="public/Datatable/DataTables-1.12.1/js/dataTables.bootstrap5.min.js"></script> -->
-    <!----===== Iconscout CSS ===== -->
     <script src="https://kit.fontawesome.com/24eae91c56.js" crossorigin="anonymous"></script>
 
 </head>
