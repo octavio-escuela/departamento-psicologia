@@ -97,8 +97,8 @@ class SessionController extends Controller{
     }
 
     function getCurrentPage(){
-        $actialLink = trim("$_SERVER[REQUEST_URI]");
-        $url = explode('/', $actialLink);
+        $actualLink = trim("$_SERVER[REQUEST_URI]");
+        $url = explode('/', $actualLink);
         error_log("SESSIONCONTROLLER::getCurrentPage->".$url[2]);
         return $url[2];
     }
@@ -132,6 +132,7 @@ class SessionController extends Controller{
     }
 
     function authorizeAccess($role){
+        
         switch ($role){
             case 'tutor':
                 $this->redirect($this->defaultSites['tutor'],[]);

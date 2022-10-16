@@ -8,7 +8,7 @@ $pysochologisTable=$data->createPsychologistsTable();
 
 ?>
 <div class='dash-content'>
-    <h2 style='color:balck;' class='pt-5 pb-4'>vista de psicologos</h2>
+    <h2 style='color:black;' class='pt-5 pb-4'>vista de psicologos</h2>
     <div class='container'>
         <div class='row'>
             <div class='col-lg-12'>
@@ -120,7 +120,8 @@ $pysochologisTable=$data->createPsychologistsTable();
 <!-- <script src='public/js/script.js'></script> -->
 <script src="public/js/bootstrap.min.js"></script>
 <script src="public/js/jquery.js"></script> 
-    <script src="public/js/jquery.dataTables.min.js"></script> 
+<script src="public/js/jquery.dataTables.min.js"></script> 
+<script src="public/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#tabla').DataTable({
