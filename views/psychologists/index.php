@@ -12,7 +12,6 @@ $pysochologisTable=$data->createPsychologistsTable();
     <div class='container'>
         <div class='row'>
             <div class='col-lg-12'>
-                <!-- Button trigger modal -->
                 <button id='btnNuevo' type='button' class='btn btn-primary' data-bs-toggle='modal'
                     data-bs-target='#staticBackdrop'>
                     <i class='fa-solid fa-user-plus'> </i>
@@ -48,7 +47,7 @@ $pysochologisTable=$data->createPsychologistsTable();
                                     <a type='button' class='btn btn-primary' href="<?php echo constant('URL');?>/psychologists/formPsychologistById/<?php echo $pyschologist->getId();?>">
                                         <i class='fa-solid fa-edit'></i>
                                     </a>
-                                    <a type='button' class='btn btn-danger' href="<?php echo constant('URL');?>/psychologists/delete/<?php echo $pyschologist->getId();?>">
+                                    <a type='button' class='btn btn-danger' onClick="req(message='¿Estás seguro? no se podrán regresar los cambios','','POST',url='<?php echo constant('URL');?>/psychologists/delete', id='<?php echo $pyschologist->getId();?>')">
                                         <i class='fa-solid fa-trash-alt'></i>
                                     </a>
                                 </td>
@@ -61,14 +60,12 @@ $pysochologisTable=$data->createPsychologistsTable();
         </div>
     </div>
     <div class='container mt-5'>
-        <!-- Modal -->
         <div class='modal fade' id='staticBackdrop' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
             aria-labelledby='staticBackdropLabel' aria-hidden='true'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
                     <div class='modal-header'>
                         <h5 class='modal-title' id='staticBackdropLabel'>Registrar nuevo Psicologo</h5>
-                        <!-- <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button> -->
                     </div>
                     <div class='modal-body'>
                         <p><?php $this->showMessages();?></p>
@@ -97,10 +94,6 @@ $pysochologisTable=$data->createPsychologistsTable();
                                         <div class="mb-3">
                                             <input class="form-control" type="text" name="telefono" placeholder="Telefono" />
                                         </div>
-                                        <!-- <div class="boton-style">
-                                            <input type="submit" value="Siguiente" />
-                                             //enlace al controlador
-                                        </div> -->
                                         <div class='modal-footer'>
                                             <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
                                             <button type='submit' class='btn btn-primary'>Registrar</button>
@@ -117,11 +110,13 @@ $pysochologisTable=$data->createPsychologistsTable();
     </div>
 </div>
 </section>
+
 <!-- <script src='public/js/script.js'></script> -->
 <script src="public/js/bootstrap.min.js"></script>
 <script src="public/js/jquery.js"></script> 
 <script src="public/js/jquery.dataTables.min.js"></script> 
 <script src="public/js/dataTables.bootstrap5.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#tabla').DataTable({
@@ -130,8 +125,9 @@ $pysochologisTable=$data->createPsychologistsTable();
             }
         });
     });
-</script>
+    
 
-<!-- alertas -->
+</script> 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="public/js/alert.js"></script>
+<script src="public/js/confirmation.js"></script>
