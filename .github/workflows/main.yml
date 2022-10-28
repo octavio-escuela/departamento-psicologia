@@ -22,7 +22,10 @@ jobs:
                     ${{ secrets.DATABASE_NAME }} \
                     ${{ secrets.DATABASE_USER }} \
                     ${{ secrets.DATABASE_PASSWORD }}
-          
+    - name: Change getCurrentPage function
+      run: |
+        chmod +x changeGetCurrentPage.sh
+        ./changeGetCurrentPage.sh
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
