@@ -9,7 +9,7 @@ class FilesModel extends Model implements IModel{
     private $religion;
     private $ocupacion;
     private $motivoConsulta;
-    private $descripcion;
+    private $descripcionPaciente;
     private $fecha;
     private $idUsuario;
 
@@ -24,7 +24,7 @@ class FilesModel extends Model implements IModel{
         $religion = "";
         $ocupacion = "";
         $motivoConsulta = "";
-        $descripcion = "";
+        $descripcionPaciente = "";
         $fecha = "";
         $idUsuario = "";
     }
@@ -42,7 +42,7 @@ class FilesModel extends Model implements IModel{
                 'religion' => $this->religion,
                 'ocupacion' => $this->ocupacion,
                 'motivo' => $this->motivoConsulta,
-                'descr' => $this->descripcion,
+                'descr' => $this->getDescripcion(),
                 'idAlumno' => $this->idAlumno,
                 'fecha' => $this->fecha,
                 'idUsuario' => $this->idUsuario
@@ -89,7 +89,7 @@ class FilesModel extends Model implements IModel{
             $this->religion = $file['Religion'];
             $this->ocupacion = $file['Ocupacion'];
             $this->motivoConsulta = $file['MotivoConsulta'];
-            $this->descripcion = $file['Descripcion'];
+            $this->setDescripcion($file['Descripcion']);
             $this->setFecha($file['Fecha']);
             $this->setAtendio($file['Atendio']);
             $this->idAlumno = $file['IdAlumno'];
@@ -125,7 +125,7 @@ class FilesModel extends Model implements IModel{
                 'religion' => $this->religion,
                 'ocupacion' => $this->ocupacion,
                 'motivo' => $this->motivoConsulta,
-                'descr' => $this->descripcion,
+                'descr' => $this->getDescripcion(),
                 'fecha' => $this->fecha,
                 'atendio' => $this->atendio,
                 'idAlumno' => $this->idAlumno,
@@ -142,9 +142,9 @@ class FilesModel extends Model implements IModel{
         $this->tiempoResidencia = $array['tiempoResidencia'];
         $this->religion = $array['religion'];
         $this->ocupacion = $array['ocupacion'];
-        $this->motivoConsulta = $array['motivoConsulta'];
-        $this->descripcion = $array['descripcion'];
-        $this->idAlumno = $array['idAlumno']; 
+        $this->setMotivo( $array['motivoConsulta']);
+        $this->setDescripcion($array['descripcionPaciente']);
+        $this->setIdAlumno($array['idAlumno']); 
         $this->setFecha($array['fecha']);
         $this->setAtendio($array['atendio']);
         $this->setIdUsuario($array['idUsuario']);
@@ -166,7 +166,7 @@ class FilesModel extends Model implements IModel{
         $this->motivoConsulta = $motivo;
     }
     public function setDescripcion($descripcion){   
-        $this->descripcion = $descripcion;
+        $this->descripcionPaciente = $descripcion;
     }
     public function setIdAlumno($idAlumno){         
         $this->idAlumno = $idAlumno;
@@ -195,7 +195,7 @@ class FilesModel extends Model implements IModel{
         return $this->motivoConsulta;
     }
     public function getDescripcion(){       
-        return $this->descripcion;
+        return $this->descripcionPaciente;
     }
     public function getIdAlumno(){          
         return $this->idAlumno;

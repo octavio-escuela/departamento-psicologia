@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-sm-6">
                     <label for="">Religión</label>
-                    <input type="text" class="form-control" id="ocupacion" name="ocupacion" placeholder="Ocupación">
+                    <input type="text" class="form-control" id="religion" name="religion" >
                 </div>
                 <div class="col-sm-6">
                     <label for="">Ocupación</label>
@@ -95,18 +95,27 @@
                     <label for="">Descripcion del paciente</label>
                     <textarea class="form-control" id="descripcionPaciente" name="descripcionPaciente" rows="3"></textarea>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                         <div class="form-group">
+                             <input type="hidden" class="form-control" 
+                                 id="idAlumno" name="idAlumno" value="1">
+                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                         <div class="form-group">
+                             <input type="hidden" class="form-control" 
+                                 id="idUsuario" name="idUsuario" value="1">
+                         </div>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <input class="w-100 btn btn-primary btn-lg" type="submit" class="form-control" value="Agregar expediente">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" 
-                            id="idAlumno" name="idAlumno">
-                    </div>
-                </div>
-            </div>
+            
        </form>
     </div>
 </div>

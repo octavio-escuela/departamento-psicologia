@@ -1,6 +1,5 @@
 <?php
 
-include_once 'models/joinstudentfilesmodel.php';
 class Files extends SessionController{
 
     function __construct(){
@@ -35,10 +34,10 @@ class Files extends SessionController{
         if ($this->existPOST(['atendio','fecha','nombre','apellidoPaterno',
         'apellidoMaterno','fechaNacimiento','lugar','direccion','telefonoCasa',
         'telefonoCelular', 'idAlumno','tiempoResidencia','religion','ocupacion',
-        'motivoConsulta','descripcion','idUsuario']) && !empty($_POST['idAlumno'])
+        'motivoConsulta','descripcionPaciente','idUsuario']) && !empty($_POST['idAlumno'])
         && !empty($_POST['tiempoResidencia']) && !empty($_POST['religion']) 
         && !empty($_POST['ocupacion']) && !empty($_POST['motivoConsulta'])
-        && !empty($_POST['descripcion']) && !empty($_POST['idUsuario'])){
+        && !empty($_POST['descripcionPaciente']) && !empty($_POST['idUsuario'])){
             return true;
         }
         else {
