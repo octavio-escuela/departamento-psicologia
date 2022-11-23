@@ -17,8 +17,6 @@ class SessionController extends Controller{
         $this->init();
     }
 
-    //va a leer el archivo json que me permita definir como voy a dar los permisos
-    //para dar autorizacion a los usuarios. 
     function init(){
         $this->session = new Session();
 
@@ -29,14 +27,11 @@ class SessionController extends Controller{
 
         $this->validateSession();
     }
-    //cargamos el archivo json y hay que decifrarlo
     private function getJSONFileConfig(){
         $string = file_get_contents('config/access.json');
         $json = json_decode($string, true);
         return $json;
     }
-    //funcion para validar si existe sesion y vallidar si la pagina a la que quiere entrar es publica o privada
-    //y si deacuerdo al rol puede ver la pagina
     public function validateSession(){
         error_log('SESSIONCONTROLLER::validateSession');
         if($this->existsSession()){
@@ -73,7 +68,6 @@ class SessionController extends Controller{
         if($userid) return true;
         return false;
     }
-    //revisar por que no usa session->getCurrentUser
     function getUserSessionData(){
         $id = $this->session->getCurrentUser();
         $this ->user = new UserModel();
