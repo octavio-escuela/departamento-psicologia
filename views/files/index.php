@@ -107,7 +107,7 @@
                     <div class="col-md-12">
                          <div class="form-group">
                              <input type="hidden" class="form-control" 
-                                 id="idUsuario" name="idUsuario" value="1">
+                                 id="idUsuario" name="idUsuario" value="<?php echo $user->getId();?>">
                          </div>
                     </div>
                 </div>
